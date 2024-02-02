@@ -6,6 +6,15 @@ const port = 3000;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+const db = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "bnb",
+  password: "Mydp#nayak09",
+  port: 5432,
+});
+db.connect();
 // const API_URL = "https://www.meetup.com/api/guide/#p03-publishing-section"
 // const graphQl = `mutation($input: CreateEventInput!) {
 //     createEvent(input: $input) {
@@ -44,7 +53,7 @@ app.get("/about", async (req, res) => {
 
 
 const cred = [];
-app.post("/submit", (req, res) => {
+app.post("/submit", async (req, res) => {
   const { name, email, contact, location, message } = req.body;
   if (!name || !email || !contact || !location || !message) {
     return res.render("contact.ejs", {
@@ -62,6 +71,7 @@ app.post("/submit", (req, res) => {
   };
 
   cred.push(newUser);
+   await db.query("INSERT INTO users(name,email,phone,location,feedback) VALUES($1,$2,$3,$4,$5)",[name,email,contact,location,message]);
   console.log(cred);
   res.render("contact.ejs", {
     title: "Success fully Submited Your response",
@@ -107,7 +117,9 @@ let params = {
   category,
    country: "IN",
 
-"location_around.origin": "20.267646,85.833995",
+// "location_around.origin": "20.267646,85.833995",
+
+"location_around.origin": "23.146807,72.126107",
   
 };
 //    let params = {};

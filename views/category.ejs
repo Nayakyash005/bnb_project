@@ -56,9 +56,11 @@
             <span class="px-3 py-1.5 capitalize  h-fit w-fit rounded-full bg-blue-100 border border-blue-600 text-blue-600 font-sm" >Online</span>
 
             <span class="px-2 py-1.5 capitalize" >category :<%= post.category %></span>  <!-- concerts-->
-              <% if(post.category == 'sports'){ %>
+              <!-- % if(post.category == 'sports'){ %> -->
+                <%if(post.entities[0]){%>
                 <span class="px-2 py-1.5 capitalize" >location:  <%= post.entities[0].formatted_address %></span>  <!-- concerts-->   
             <%  } %>
+            <!-- %}%> -->
             <span class="px-2 py-1.5 capitalize" ><%= post.phq_attendance %> Participants</span>   <!-- phq_attendance-->
             
           </div>
