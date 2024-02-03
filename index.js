@@ -114,8 +114,9 @@ const headers = {
 };
 
 let params = {
-  category,
-   country: "IN",
+  
+  category:category,
+  country: "IN",
 
 // "location_around.origin": "20.267646,85.833995",
 

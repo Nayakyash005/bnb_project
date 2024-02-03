@@ -1,0 +1,10 @@
+@media(max-width:1000px){
+.sec1{
+    flex-direction: column;
+}
+.navbar{
+flex-direction: column;
+}
+.card{
+    margin:25px 0px
+}
