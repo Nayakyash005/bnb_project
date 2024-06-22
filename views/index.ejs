@@ -233,23 +233,31 @@ left:0px;
   <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/phone.css">
   
-  <h1>NAAM NAHI PATA</h1>
+  <%if(locals.city){  %>
+    <h1><%= city %></h1>
+ <%    } else{%>
+  <h1>Select Your City</h1>
+  <% } %>
    <img src="/images/new3.avif" class="bg-new" alt="">
   <div class="home-page">
     <div class="dropdown">
-      <button class="dropbtn">Select Your City</button>
+      <%if(locals.city){  %>
+      <button class="dropbtn"><%= city %></button>
+   <%    } else{%>
+    <button class="dropbtn">Select Your City</button>
+    <% } %>
       <div class="dropdown-content">
-        
-        <a href="#"> <button class="shiva">katmanduuu</button></a>
-
-        <a href="#"> <button class="shiva">bhubaneshwar</button></a>
+         
+        <a href=""> <button class="shiva" id="Ahmedabad"  onclick="handleButtonClick(this)" name="city">Ahmedabad</button></a>
+             
+        <a href=""> <button class="shiva" id="bhubaneshwar"  onclick="handleButtonClick(this)" name="city">bhubaneshwar</button></a>
       
-        <a href="#"> <button class="shiva">hgdqgdy</button></a>
-        <a href="#"> <button class="shiva">gaUKdgsa</button></a>
-        <a href="#"> <button class="shiva">gaUKdgsa</button></a>
-        <a href="#"> <button class="shiva">gaUKdgsa</button></a>
-        <a href="#"> <button class="shiva">gaUKdgsa</button></a>
-        <a href="#"> <button class="shiva">gaUKdgsa</button></a>
+        <a href=""> <button class="shiva" id="Bengaluru"  onclick="handleButtonClick(this)" name="city">Bengaluru</button></a>
+        <a href=""> <button class="shiva" id="Delhi"  onclick="handleButtonClick(this)" name="city">Delhi</button></a>
+        <a href=""> <button class="shiva" id="Hyderabad"  onclick="handleButtonClick(this)" name="city">Hyderabad</button></a>
+        <a href=""> <button class="shiva" id="Kolkata"  onclick="handleButtonClick(this)" name="city">Kolkata</button></a>
+        <a href=""> <button class="shiva" id="Mumbai"  onclick="handleButtonClick(this)" name="city">Mumbai</button></a>
+        <a href=""> <button class="shiva" id="Pune"  onclick="handleButtonClick(this)" name="city">Pune</button></a>
         
       </div>
     </div>
@@ -303,5 +311,14 @@ left:0px;
       </div>
     </div>
   </div>
+  
+  <script>
+    function handleButtonClick(button){
+      var btnId = button.id;
+      fetch(`/state/${encodeURIComponent(btnId)}`);
+    }
+
+
+  </script>
 
   <%- include("partials/footer.ejs") %>
